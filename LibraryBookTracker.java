@@ -1,14 +1,12 @@
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
-
 public class LibraryBookTracker {
     // Statistics count (Declear with static becuse it's belong to class and out of the main )
     static int validRecords = 0;
     static int searchResults = 0;
     static int booksAdded = 0;
     static int errorCount = 0;
-
     public static void main(String[] args) {
         String logFile = "errors.log"; //log file name
 
@@ -17,14 +15,12 @@ public class LibraryBookTracker {
             if (args.length < 2) {
                 throw new InsufficientArgumentsException("Missing arguments.");
             }
-
             String fileName = args[0]; //file name
             //if first argument do not end with .txt throw error(catch on main)
             //endWith is prebuild method in java compare the end of string with suffix we deciede 
             if (!fileName.endsWith(".txt")) {
                 throw new InvalidFileNameException("File must end with .txt");
             }
-
             File file = new File(fileName); // if no file exist
             //getParent return string
             if (file.getParent() != null) {
@@ -32,13 +28,12 @@ public class LibraryBookTracker {
             } else {
                 logFile = "errors.log"; //else java will add the file at the same folder we work in it 
             }
-
             // getParentFile return instance file
             if (file.getParentFile() != null) { // if file not exist this function will help to create it (file) 
                 file.getParentFile().mkdirs(); // and mkdirs function will keep it in same order and create it
             }
             file.createNewFile(); //if already exist will not do anything
-
+            
             String userInput = args[1];  //operation name
             // 13 - ISBN Digit
             if (isNumeric(userInput) || userInput.length() == 13) {
@@ -88,7 +83,7 @@ public class LibraryBookTracker {
 @exception DuplicateISBNException deal with it locally by print statment
 @IOException because i open and read from file so i could hadle any exception accure in the main method
 */
-    private static void searchBooks(File f, String q, boolean isIsbn, String log) throws IOException {
+    public static void searchBooks(File f, String q, boolean isIsbn, String log) throws IOException {
         ArrayList<LibraryOrganization> results = new ArrayList<>();
         Scanner reader = new Scanner(f); //t o read file
 
@@ -143,7 +138,7 @@ public class LibraryBookTracker {
 @return nothing void type
 @IOException because i open and read from file so i could hadle any exception accure in the main method
 */
-        private static void addBook(File f, String data, String log) throws IOException {
+        public static void addBook(File f, String data, String log) throws IOException {
         ArrayList<String> Lines = new ArrayList<>();
         //Read file and transfer file lines to Lines list
         Scanner reader = new Scanner(f);
@@ -180,7 +175,7 @@ public class LibraryBookTracker {
 @exception Validate ISBN is all numbers and exactly 13 digit;
 @exception Validate Copies exactly greater than 0;
 */
-    private static LibraryOrganization parsing(String text) throws BookCatalogException {
+    public static LibraryOrganization parsing(String text) throws BookCatalogException {
         String[] parts = text.split(":"); //this is prebuild in java method that spilt words depend on value of parameter
         //Throw Exceptions if found one
         // all this Exceptions catche on SearchBook & AddBook methods
@@ -212,7 +207,7 @@ public class LibraryBookTracker {
 @return nothing void type
 @exception IOException  
 */
-    private static void logError(String path, String info, Exception e) {
+    public static void logError(String path, String info, Exception e) {
         errorCount++;
         String time = LocalDateTime.now().toString(); //use prebuild time library in java 
 
@@ -237,5 +232,21 @@ public class LibraryBookTracker {
             }
         }
         return true;
+    }
+    public static String getValidRecords() {
+        // TODO Auto-generated method stub
+        return String.valueOf(validRecords);
+    }
+    public static String getSearchResults() {
+        // TODO Auto-generated method stub
+        return String.valueOf(searchResults);
+    }
+    public static String getBooksAdded() {
+        // TODO Auto-generated method stub
+        return String.valueOf(booksAdded);
+    }   
+    public static String getErrorCount() {
+        // TODO Auto-generated method stub
+        return String.valueOf(errorCount);
     }
 }

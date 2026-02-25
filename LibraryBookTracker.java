@@ -233,20 +233,20 @@ public class LibraryBookTracker {
         }
         return true;
     }
-    public static String getValidRecords() {
+    public static int getValidRecords() {
         // TODO Auto-generated method stub
-        return String.valueOf(validRecords);
+        return validRecords;
     }
-    public static String getSearchResults() {
+    public static int getSearchResults() {
         // TODO Auto-generated method stub
-        return String.valueOf(searchResults);
+        return searchResults;
     }
-    public static String getBooksAdded() {
+    public static int getBooksAdded() {
         // TODO Auto-generated method stub
-        return String.valueOf(booksAdded);
+        return booksAdded;
     }   
-    public static String getErrorCount() {
+    public static int getErrorCount() {
         // TODO Auto-generated method stub
-        return String.valueOf(errorCount);
+        return errorCount;
     }
 }

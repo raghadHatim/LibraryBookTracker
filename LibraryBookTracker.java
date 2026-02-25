@@ -234,19 +234,19 @@ public class LibraryBookTracker {
         return true;
     }
     public static int getValidRecords() {
-        // TODO Auto-generated method stub
+        
         return validRecords;
     }
     public static int getSearchResults() {
-        // TODO Auto-generated method stub
+        
         return searchResults;
     }
     public static int getBooksAdded() {
-        // TODO Auto-generated method stub
+        
         return booksAdded;
     }   
     public static int getErrorCount() {
-        // TODO Auto-generated method stub
+        
         return errorCount;
     }
 }
